@@ -4,18 +4,34 @@
     <title>演習課題5-2：外部APIの呼び出しテスト</title>
 </head>
 <body>
-    <h1 id="msg">何かのAPI</h1>
+    <h1 id="msg">猫の豆知識API</h1>
     <form name="apiform"><p>
-        何かのフォーム：<input type="text" name="form_data">
-        <button type="button" id="btn1" onclick="some_api(this.form)">実行</button>
+        猫の豆知識：<input type="text" name="form_data">
+        <button type="button" id="btn1" onclick="some_api(this.form)">取得</button>
     </p></form>
     
-    <div id="result"></div>
+    <div id="result">ここに結果が表示されます</div>
     <script>
-        async function some_api(myForm) {
-            // ここにコードを書く
-            document.getElementById("result").innerHTML += myForm.form_data.value+"<br />";
-            document.apiform.reset();
+        async function some_api() {
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "猫の豆知識を取得中..."; // 検索中のメッセージを表示
+
+            try {
+                const endpoint = "https://catfact.ninja/fact";
+                const response = await fetch(endpoint);
+                const data = await response.json();
+
+                if (data && data.fact) {
+                    resultDiv.innerHTML = `<h3>今日の猫の豆知識</h3><p>${data.fact}</p>`;
+                } else {
+                    resultDiv.innerHTML = "<p style='color: orange;'>猫の豆知識を取得できませんでした。</p>";
+                }
+            } catch (error) {
+                console.error("API呼び出しエラー:", error);
+                resultDiv.innerHTML = "<p style='color: red;'>API呼び出し中にエラーが発生しました。</p>";
+            }
+            // myForm.form_data.value はCat Fact APIでは不要なので削除
+            // document.apiform.reset() もこのAPIでは不要なので削除
         }
     </script>
 </body>
