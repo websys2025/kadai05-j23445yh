@@ -26,5 +26,9 @@ APIの名称：Cat Facts API
 表示例：There is a species of cat smaller than the average housecat. It is native to Africa and it is the Black-footed cat (Felis nigripes). Its top weight is 5.5 pounds.
 ### Q3-3. 感想
 * 今回の課題で苦労したこと
+　WedAPIの結果を表示することで、コードが少し違えばテキストに反映されなかったりと大変だった。
 * 演習を通して理解できたこと
+　WebAPIの基本的な使い方を理解した。
 * Web APIの利便性や課題など
+ 利便性：開発する際にコストがかからなくて済む、既存の機能やデータを再利用できるので、開発が楽になる。
+ 課題：APIの仕様変更や提供終了のリスク、利用制限など、問題点が多い。
